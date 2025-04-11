@@ -1,0 +1,41 @@
+main {
+    margin-top: 60px; /* to push content below navbar */
+    padding: 2rem;
+    background-color: #000;
+    color: #fff;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    width: 100%;
+}
+
+.Filmsbox {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+input, button {
+    margin: 0.5rem 0;
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #e50914;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f40612;
+}
