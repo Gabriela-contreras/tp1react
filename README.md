@@ -6,17 +6,25 @@ App.js, index.css y package-json.js.
 
 
 <h1>Trabajo Practico React <h1>
-<hr>
-
-<p>Alumnas : Contreras Gabriela fai-4480 y Contreras Katherine fai-<p>
 
 
-<h2>Funcionalidades de los archivos <h2>
+Alumnas : Contreras Gabriela fai-4480 y Contreras Katherine fai-
 
-index.js: el archivo index.js es el que se encarga de renderziar la pagina. 
 
-app.js : ese archivo es el inicial que podemos cambiar , es la vista de nuestra pagina.
+## Archivos Iniciales y Sus Funciones
 
-index.css : es el archivo con estilos css del index.js 
+### `index.js`
+Este archivo es el punto de entrada principal de la aplicación React. Se encarga de renderizar el componente raíz (`App.js`) dentro del DOM.
 
-package-json.js: este documento muestra las versiones instaladas , como correr el proyecto etc.
+### `App.js`
+Es el componente principal de la aplicación. Contiene la estructura base y lógica inicial para la interfaz de usuario.
+
+### `index.css`
+Archivo de estilos globales para la aplicación. Define las reglas CSS que se aplican de manera general a todos los componentes.
+
+### `package.json`
+Este archivo describe el proyecto y sus dependencias. Contiene información como el nombre del proyecto, versión, scripts disponibles y las bibliotecas necesarias para ejecutar la aplicación.
+
+---
+
+¡Gracias por explorar nuestro proyecto!
