@@ -1,19 +1,21 @@
 .card{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     height: auto;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    margin-top:10px;
+    padding: 10px;
     
 }
 
-.title{
+.textCard{
     text-align: center;
     font-size:14px;
     color:black;
-    margin: 8px;
+    margin: 4px;
 }
 
 .text{

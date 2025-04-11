@@ -1,9 +1,25 @@
-.box {
+.boxNavbar {
     width: 100%;
-    background-color: #dfa2ff;
+    background: linear-gradient(141deg, #43186c 25%, #8021ed 40%, #9c60fd 55%);
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    height: 50px;
+    position:fixed;
+    height: 60px;
+    box-shadow:1 0 0 0.5;
+}
+
+.pNavbar {
+    margin: 0;
+    padding: 0;
+    width: 50px;
+    font-size: 20px;
+    font-family: 'Roboto';
+    font-weight: 300;
+    color: #fff;
+}	
+
+.divNav{
+    width: 200px;
 }

@@ -1,0 +1,44 @@
+.boxHome{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+    margin-top: 100px;
+    width: 100%;
+    height: 100%;
+    background-color: #282c34;
+    padding-bottom: 40px;
+
+}
+
+.formHomeseen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 50%;
+    height: 100%;
+    background-color: #282c34;
+    padding-top : 40px;
+    padding-bottom: 40px;
+}
+.divseenfilms{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.divshowfilms{
+    display: flex;
+    /* position: absolute;
+    top:80px;
+    right: 0%; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    /* height: 100%; */
+    background-color: #282c34;
+    padding-bottom: 40px;
+}
+

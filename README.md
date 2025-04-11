@@ -1,14 +1,8 @@
-Armar un archivo readme.md en el cual se detallen los miembros del grupo y
-funcione como carátula del repositorio
-a) En el archivo readme.md:
-i) Explicar la función de los siguientes archivos iniciales: index.js,
-App.js, index.css y package-json.js.
 
+## Trabajo Practico React 
 
-<h1>Trabajo Practico React <h1>
-
-
-Alumnas : Contreras Gabriela fai-4480 y Contreras Katherine fai-
+## Alumnas 
+ Contreras Gabriela fai-4480 y Contreras Katherine fai-
 
 
 ## Archivos Iniciales y Sus Funciones

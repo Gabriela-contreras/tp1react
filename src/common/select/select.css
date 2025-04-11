@@ -1,0 +1,21 @@
+.select {
+    width: 30%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+}
+
+.movies{
+width: 30%;
+    padding-top : 40px;
+    padding-bottom: 40px;
+}
+
+.series{
+width: 30%;
+    padding-top : 40px;
+    padding-bottom: 40px;
+}
