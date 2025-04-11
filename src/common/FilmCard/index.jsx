@@ -1,11 +1,12 @@
 import react from 'react';
+import card from './card.css';
 
 const FilmCard = ({ title, genre }) => {
     return (
-<div>
-    <h2>{title}</h2>
-    <p>{genre}</p>
-</div>
+        <div className='card'>
+            <p className='title'>{title}</p>
+            <p className='text'>{genre}</p>
+        </div>
     )
 }
 

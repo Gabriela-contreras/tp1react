@@ -1,5 +1,8 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  /* background-color: #282c34; */
+  justify-content: space-between;
+
 }
 
 .App-logo {
@@ -35,4 +38,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+.Filmsbox{
+  width: 80%;
+  display: grid;
+  /* flex-direction: row; */
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin: 10px;
+
+}
+
+.hr{
+  background-color: white;
+  height: 1px;
 }

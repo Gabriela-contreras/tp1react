@@ -1,14 +1,14 @@
 import React from "react";
+import input from "./input.css"
 
-
-const Input = ({ type, placeholder, value, onChange }) => {
+const Input = ({ placeholder, value, onChange }) => {
     return (
         <input
-            type={type}
+            type="text"
             placeholder={placeholder}
             value={value}
             onChange={onChange}
-            className="form-control"
+            className="input"
         />
     );
 }

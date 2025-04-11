@@ -1,4 +1,5 @@
 import React from "react";
+import busqueda from "./busqueda.css"
 
 const InputBusqueda = ({ value, onChange }) => {
 
@@ -6,14 +7,14 @@ const InputBusqueda = ({ value, onChange }) => {
     const onChangeInputHandle = (evento) => {
         onChange(evento.target.value);
     }
-    
+
     return (
         <input
             type="text"
             placeholder="Buscar..."
             value={value}
             onChange={onChangeInputHandle}
-            className="form-control"
+            className="busqueda"
         />
     )
 }

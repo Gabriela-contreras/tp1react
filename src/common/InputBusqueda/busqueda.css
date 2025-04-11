@@ -1,0 +1,10 @@
+.busqueda{
+    width: 30%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+
+}
