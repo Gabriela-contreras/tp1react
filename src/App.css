@@ -1,13 +1,14 @@
-.App {
-  justify-content: space-between;
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  width: 100%;
+}
+main {
+  margin-top: 60px; /* to push content below navbar */
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
 }
 
-.Filmsbox{
-  width: 80%;
-  display: grid;
-  /* flex-direction: row; */
-  gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  margin: 10px;
-
-}

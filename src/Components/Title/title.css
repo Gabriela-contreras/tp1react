@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
+.boxTitle {
+    text-align: center;
+    color: white;
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 32px;
+    /* width: 100%; */
+    /* padding-top: 40vh; */
+    height: 10%;
+    overflow: hidden;
+    /* webkit-backface-visibility: hidden; hace que el texto no se vea borroso */
+    /* webkit-perspective: 1000; hace que el texto no se vea borroso */
+    /* webkit-transform: translate3d(0, 0, 0); hace que el texto no se vea borroso */
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.div {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.div:first-of-type {
+    /* For increasing performance 
+    ID/Class should've been used. 
+    For a small demo 
+    it's okaish for now */
+    animation: showup 7s infinite;
+}
+
+.div:last-of-type {
+    width: 0px;
+    animation: reveal 7s infinite;
+}
+
+.div:last-of-type span {
+    margin-left: -355px;
+    animation: slidein 7s infinite;
+}
+
+/* showup es el que hace que el texto aparezca y desaparezca */
+
+
+@keyframes showup {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* slidein es el que hace que el texto se desplace hacia la derecha */
+/* y se mantenga en su lugar */
+
+@keyframes slidein {
+    0% {
+        margin-left: -800px;
+    }
+
+    20% {
+        margin-left: -800px;
+    }
+
+    35% {
+        margin-left: 0px;
+    }
+
+    100% {
+        margin-left: 0px;
+    }
+}
+
+
+/* reveal es el que hace que el texto aparezca y desaparezca */
+/* y se desplace hacia la derecha */
+@keyframes reveal {
+    0% {
+        opacity: 0;
+        width: 0px;
+    }
+
+    20% {
+        opacity: 1;
+        width: 0px;
+    }
+
+    30% {
+        width: 355px;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        width: 355px;
+    }
+}
+
+
+.h1 {
+    font-size: 30px;
+    color: #eee;
+}

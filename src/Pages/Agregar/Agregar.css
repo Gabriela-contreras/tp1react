@@ -1,0 +1,35 @@
+
+.divseenfilms{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+.formHomeseen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 0;
+    width: 80%;
+}
+
+input {
+    margin: 0.5rem 0;
+    padding: 10px;
+    width: 50%;
+    font-size: 1rem;
+}
+
+
+button {
+    background-color: #e50914;
+    border: none;
+    color: white;
+    cursor: pointer;
+    max-width: 200px;
+}
+
+button:hover {
+    background-color: #f40612;
+}

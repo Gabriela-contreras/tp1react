@@ -12,12 +12,13 @@
   flex-wrap: wrap;
 }
 
-.logo {
+.logo a {
   color: #e50914;
   font-size: 1.8rem;
   font-weight: bold;
   margin-right: 30px;
   letter-spacing: 1px;
+  text-decoration: none;
 }
 
 .nav-links {

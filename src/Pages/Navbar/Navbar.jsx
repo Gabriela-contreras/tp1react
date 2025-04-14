@@ -1,16 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import InputBusqueda from "../../Components/InputBusqueda";
 import "./navbar.css";
 
 const Navbar = () => {
     return (
         <header className="navbar">
-            <div className="logo">MyFlix</div>
+            <div className="logo">
+                <Link to="/">MyFlix</Link>
+            </div>
             <nav className="nav-links">
-                <a href="/">Inicio</a>
-                <a href="/Peliculas">Películas</a>
-                <a href="/Series">Series</a>
-                <a href="/Agregar">Agregar</a>
+                <Link to="/Agregar">Agregar</Link>
             </nav>
             <div className="nav-search">
                 <InputBusqueda />
@@ -20,3 +20,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

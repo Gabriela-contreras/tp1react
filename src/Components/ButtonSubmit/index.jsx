@@ -1,6 +1,5 @@
 import react from 'react';
-import button from './button.css';
-
+import './button.css'
 const ButtonSubmit = ({ text, onClick }) => {
     return (
         <button className="btn" onClick={onClick}>
