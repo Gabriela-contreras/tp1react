@@ -1,9 +1,9 @@
 import './App.css';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom'
-import Agregar from './Pages/Agregar/Agregar';
-import Home from './Pages/Home/Home';
-import Navbar from './Pages/Navbar/Navbar';
+import Agregar from './pages/Agregar/Agregar';
+import Home from './pages/Home/Home';
+import Navbar from './pages/Navbar/Navbar';
 
 function App() {
   return (
