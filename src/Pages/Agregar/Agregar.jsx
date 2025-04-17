@@ -1,5 +1,5 @@
-import React from "react";
-import './Agregar.css'
+import React, { useState } from "react";
+import './Agregar.css';
 import Title from "../../Components/Title/title";
 import Input from "../../Components/Input";
 import Select from "../../Components/select";
@@ -7,25 +7,22 @@ import ButtonSubmit from "../../Components/ButtonSubmit";
 import Swal from "sweetalert2";
 
 const Agregar = () => {
-    //desestructuramos el objeto form para poder usarlo en el formulario
-    // antes teniamos un estado para cada input, ahora tenemos un solo estado que contiene todos los inputs
-    const [form, setForm] = React.useState({
+    const [form, setForm] = useState({
         title: "",
         director: "",
         year: "",
         rating: "",
         genero: "",
         img: "",
+        description: "",
         estado: "",
         typefilm: ""
     });
 
     const validarCampos = () => {
-        // Convertir el objeto form a un array de valores
         const valores = Object.values(form);
-        // Verificar si hay algún campo vacío
         const campoVacio = valores.some(item => item === "");
-        
+
         if (campoVacio) {
             Swal.fire({
                 title: "Error!",
@@ -33,38 +30,31 @@ const Agregar = () => {
                 icon: "error",
                 draggable: true
             });
-            console.log("Error: Campos vacíos");
             return false;
         }
-        
-        return true;
-    }
 
-    // Function to handle input changes
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setForm((prevForm) => ({
-            ...prevForm,
-            [name]: value,
-        }));
+        return true;
     };
 
-    // el onclick del boton submit, guarda los datos en el local storage y resetea el formulario
-    const Onclick = (evento) => {
-        evento.preventDefault();
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setForm(prev => ({ ...prev, [name]: value }));
+    };
 
-        // Validar que todos los campos estén llenos
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
         if (validarCampos()) {
             Swal.fire({
                 title: "Guardado!",
                 icon: "success",
                 draggable: true
             });
-            console.log("Formulario enviado:", form);
+
             const films = JSON.parse(localStorage.getItem("films")) || [];
             films.push(form);
             localStorage.setItem("films", JSON.stringify(films));
-            // reseteamos el formulario 
+
             setForm({
                 title: "",
                 director: "",
@@ -72,86 +62,119 @@ const Agregar = () => {
                 rating: "",
                 genero: "",
                 img: "",
+                description: "",
                 estado: "",
                 typefilm: ""
             });
 
-            // Recargamos la pagina para ver los cambios
             window.location.reload();
         }
     };
 
     return (
-        <div className="boxAgregar">
-            <Title text={"Agrega tu Pelicula"} />
+        <div className="agregar-pelicula-container">
+            <Title text="Añadir película" />
 
-            <div className="divseenfilms">
-                <form action="" className="formHomeseen">
+            <form onSubmit={handleSubmit} className="formulario-netflix">
+
+                <div className="form-group">
                     <Input
                         name="title"
                         value={form.title}
                         onChange={handleChange}
-                        placeholder={"Titulo"}
-                        type={"text"}
+                        placeholder="Título"
+                        type="text"
                     />
+                </div>
+
+                <div className="form-group">
                     <Input
                         name="director"
                         value={form.director}
                         onChange={handleChange}
-                        placeholder={"Director"}
-                        type={"text"}
+                        placeholder="Director"
+                        type="text"
                     />
+                </div>
+
+                <div className="form-group">
                     <Input
                         name="year"
                         value={form.year}
                         onChange={handleChange}
-                        placeholder={"Año"}
-                        type={"date"}
+                        placeholder="Año"
+                        type="date"
                     />
+                </div>
+
+                <div className="form-group">
                     <Input
                         name="rating"
                         value={form.rating}
                         onChange={handleChange}
-                        placeholder={"Rating number"}
-                        type={"number"}
+                        placeholder="Rating"
+                        type="number"
                     />
+                </div>
 
+                <div className="form-group">
+                    <Input
+                        name="description"
+                        value={form.description}
+                        onChange={handleChange}
+                        placeholder="description"
+                        type="text"
+                    />
+                </div>
+
+                <div className="form-group">
                     <Input
                         name="img"
                         value={form.img}
                         onChange={handleChange}
-                        placeholder={"Imagen URL"}
-                        type={"text"}
+                        placeholder="URL de imagen"
+                        type="text"
                     />
-                    <select value={form.genero} onChange={handleChange} name="genero" id="genero" className="select">
-                        <option value="genero">Genero</option>
-                        <option value="accion">Accion</option>
+                </div>
+                
+                <div className="form-group">
+                    <select name="genero" value={form.genero} onChange={handleChange} required>
+                        <option value="">Selecciona un género</option>
+                        <option value="accion">Acción</option>
                         <option value="comedia">Comedia</option>
                         <option value="drama">Drama</option>
                         <option value="terror">Terror</option>
                         <option value="romance">Romance</option>
-                        <option value="fantasia">Fantasia</option>
+                        <option value="fantasia">Fantasía</option>
                     </select>
+                </div>
+
+                <div className="form-group">
                     <Select
                         name="estado"
                         value={form.estado}
                         onChange={handleChange}
-                        option1={"Vistas"}
-                        option2={"Por ver"}
-                        type={"estado"}
+                        option1="Vistas"
+                        option2="Por ver"
+                        type="estado"
                     />
+                </div>
+
+                <div className="form-group">
                     <Select
                         name="typefilm"
                         value={form.typefilm}
                         onChange={handleChange}
-                        option1={"Pelicula"}
-                        option2={"Serie"}
-                        type={"tipo"}
+                        option1="Pelicula"
+                        option2="Serie"
+                        type="tipo"
                     />
+                </div>
 
-                    <ButtonSubmit text={"Submit"} onClick={Onclick} />
-                </form>
-            </div>
+                <div className="form-group">
+                    <ButtonSubmit text="Guardar" />
+                </div>
+            </form>
         </div>
     );
 };

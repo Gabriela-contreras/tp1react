@@ -1,14 +1,14 @@
 /* Estilo base de la tarjeta Netflix */
 .netflix-card {
     position: relative;
-    width: 200px;
+    width: 100%;
     border-radius: 4px;
     overflow: hidden;
     background-color: #141414;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    margin: 10px;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
+    height: 100%;
 }
 
 .netflix-card:hover {
@@ -17,21 +17,19 @@
     z-index: 10;
 }
 
-/* Expandida */
-.netflix-card.expanded {
-    transform: scale(1.08);
-    z-index: 20;
-}
-
 /* Poster de la película */
 .card-poster {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 0;
+    padding-top: 150%; /* Proporción de poster 2:3 */
     overflow: hidden;
 }
 
 .poster-img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -67,7 +65,7 @@
     transition: all 0.3s ease;
 }
 
-/* Indicador de expansión */
+/* Indicador de expansión (ahora para abrir modal) */
 .expand-indicator {
     position: absolute;
     bottom: 10px;
@@ -80,6 +78,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    z-index: 5;
 }
 
 .expand-icon {
@@ -91,53 +90,6 @@
 
 .netflix-card:hover .expand-indicator {
     background-color: rgba(229, 9, 20, 0.8);
-}
-
-/* Panel de detalles que aparece al expandir */
-.card-details {
-    padding: 15px;
-    background-color: #181818;
-    color: #fff;
-    border-top: 3px solid #e50914;
-    animation: slideIn 0.3s ease;
-    position: relative;
-}
-
-@keyframes slideIn {
-    from { 
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to { 
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Filas de detalles */
-.detail-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-}
-
-.detail-label {
-    font-weight: 500;
-    color: #999;
-    font-size: 14px;
-}
-
-.detail-value {
-    font-size: 14px;
-    color: #fff;
-}
-
-/* Contenedor de botones */
-.button-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 15px;
 }
 
 /* Modal de confirmación */
@@ -171,29 +123,60 @@
 .confirmation-buttons {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    width:80%;
+    gap: 10px;
+    width: 80%;
 }
 
 .cancel-btn {
-    background-color: #333;
+    background-color: #333 !important;
 }
 
 .confirm-btn {
-    background-color: #e50914;
+    background-color: #e50914 !important;
+}
+
+/* Estilos para la presentación en la cuadrícula */
+.peliculas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.pelicula-item {
+    position: relative;
+}
+
+/* Estilos para el estado de la película */
+.estado-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(229, 9, 20, 0.8);
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    z-index: 1;
 }
 
 /* Estilos para móviles */
 @media (max-width: 768px) {
-    .netflix-card {
-        width: 160px;
-    }
-    
-    .card-poster {
-        height: 240px;
+    .peliculas-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
     }
     
     .card-title {
         font-size: 14px;
+    }
+    
+    .detail-label, .detail-value {
+        font-size: 12px;
+    }
+    
+    .button-container button {
+        font-size: 12px;
+        padding: 6px 8px;
     }
 }

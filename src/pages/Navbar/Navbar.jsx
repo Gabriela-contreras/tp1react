@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import InputBusqueda from "../../Components/InputBusqueda";
 import "./navbar.css";
 
 const Navbar = () => {
@@ -12,9 +11,9 @@ const Navbar = () => {
             <nav className="nav-links">
                 <Link to="/Agregar">Agregar</Link>
             </nav>
-            <div className="nav-search">
-                {/* <InputBusqueda /> */}
-            </div>
+            <nav className="nav-links">
+                <Link to="/Buscar">Buscar</Link>
+            </nav>
         </header>
     );
 };

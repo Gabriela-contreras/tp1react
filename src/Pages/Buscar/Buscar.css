@@ -87,8 +87,9 @@
   /* Contenedor principal de películas */
   .peliculas-container {
     flex: 1;
-    padding: 40px;
+    padding: 0 40px;
     overflow-y: auto;
+    margin-top: 0;
   }
   
   .resultados-titulo {

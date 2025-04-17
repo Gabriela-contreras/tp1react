@@ -1,35 +1,90 @@
-
-.divseenfilms{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
+.agregar-pelicula-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
 }
-.formHomeseen{
+
+.formulario-netflix {
+    background-color: var(--netflix-dark-gray);
+    border-radius: 8px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto 0;
-    width: 80%;
+    gap: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-input {
-    margin: 0.5rem 0;
-    padding: 10px;
-    width: 50%;
-    font-size: 1rem;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-
-button {
-    background-color: #e50914;
+.form-group input,
+.form-group select {
+    padding: 12px 15px;
+    border-radius: 4px;
     border: none;
-    color: white;
-    cursor: pointer;
-    max-width: 200px;
+    background-color: var(--netflix-medium-gray);
+    color: var(--netflix-white);
+    font-size: 1rem;
+    transition: all 0.2s ease;
 }
 
-button:hover {
+.form-group input::placeholder,
+.form-group select::placeholder {
+    color: var(--netflix-light-gray);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.5);
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23808080' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+.btn-submit {
+    background-color: var(--netflix-red);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
     background-color: #f40612;
+    transform: translateY(-2px);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .formulario-netflix {
+        padding: 20px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .btn-submit {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
 }
