@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300');
 
 .boxTitle {
-    text-align: center;
+    text-align: start;
     color: white;
     font-family: 'Roboto';
     font-weight: 300;
     font-size: 32px;
     /* width: 100%; */
-    /* padding-top: 40vh; */
+    padding-top: 50px;
     height: 10%;
     overflow: hidden;
     /* webkit-backface-visibility: hidden; hace que el texto no se vea borroso */

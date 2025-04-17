@@ -1,19 +1,11 @@
-import React from "react";
-import input from "./input.css"
-
-const Input = ({ placeholder, value, onChange,type }) => {
-
-    const onchangeHandle = (e) => {
-        return (
-            onChange(e.target.value)
-        )
-    }
+const Input = ({ placeholder, value, onChange, type, name }) => {
     return (
         <input
             type={type}
             placeholder={placeholder}
             value={value}
-            onChange={onchangeHandle}
+            name={name}
+            onChange={onChange}
             className="input"
         />
     );

@@ -1,29 +1,37 @@
-import React from "react";
-import busqueda from "./busqueda.css"
+import React, { useState, useEffect } from "react";
 
-const InputBusqueda = ({ value, onChange }) => {
-
-
-// necesito traer del local host una lista con los objetos que voy a filtrar 
-
-
-    //function onchange
+const InputBusqueda = () => {
+    const [searchValue, setSearchValue] = useState("");
+    
+    // Load films from localStorage
+    const films = JSON.parse(localStorage.getItem("films")) || [];
+    
+    // Handle input change
     const onChangeInputHandle = (evento) => {
-        // onChange(evento.target.value);
-        console.log(evento.target.value);
-        // con este dato necesito hacer un filro de una lista de objetos 
-        // y luego mostrarlo en la pantalla
-    }
-
+        const newValue = evento.target.value;
+        setSearchValue(newValue);
+        
+        // se filtra las films 
+        const filtrado = films.filter(film => 
+            film.title.toLowerCase().includes(newValue.toLowerCase())
+        );
+        
+        // Se hace un setItem al localStorage para guardar el resultado del filtrado
+        localStorage.setItem("filteredFilms", JSON.stringify(filtrado));
+        
+        // se guarda el estado de la busqueda en el localStorage
+        localStorage.setItem("isSearchActive", "true");
+    };
+    
     return (
         <input
             type="text"
             placeholder="Buscar..."
-            value={value}
+            value={searchValue}
             onChange={onChangeInputHandle}
             className="busqueda"
         />
-    )
-}
+    );
+};
 
-export default InputBusqueda;   
+export default InputBusqueda;
