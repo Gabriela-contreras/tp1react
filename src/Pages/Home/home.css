@@ -1,0 +1,142 @@
+/* General container */
+.home-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Box container for the main content */
+.box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Section headers with title and count */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.count-badge {
+    background-color: rgba(229, 9, 20, 0.9);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Scrollable container for horizontal scrolling */
+.scrollable-container {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    scrollbar-width: thin;
+    scrollbar-color: #e50914 #141414;
+}
+
+.scrollable-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+    background: #141414;
+    border-radius: 4px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+    background-color: #e50914;
+    border-radius: 4px;
+}
+
+/* Films container for horizontal layout */
+.Filmsbox {
+    display: flex;
+    gap: 1rem;
+    min-width: max-content;
+    padding: 10px 0;
+}
+
+/* Each film card container */
+.boxseen {
+    width: 160px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.boxseen:hover {
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+/* Filter box styles */
+.boxFiltrar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: rgba(20, 20, 20, 0.8);
+    border-radius: 6px;
+    align-items: center;
+}
+
+.filtrar {
+    font-weight: 600;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.select {
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: #2c2c2c;
+    color: white;
+    border: 1px solid #444;
+    font-size: 0.9rem;
+    min-width: 120px;
+}
+
+/* Not found message */
+.pnotfound {
+    padding: 20px;
+    text-align: center;
+    color: #999;
+    width: 100%;
+    background-color: rgba(20, 20, 20, 0.5);
+    border-radius: 6px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .boxFiltrar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+    
+    .filtrar {
+        margin-bottom: 10px;
+    }
+    
+    .select {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-container {
+        padding: 0 10px;
+    }
+    
+    .boxseen {
+        width: 120px;
+    }
+}

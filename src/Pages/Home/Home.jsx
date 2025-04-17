@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import Title from "../../Components/Title/title";
 import './home.css';
 import FilmCard from "../../Components/FilmCard";
-
+import Modal from "../Modal/Modal";
 const Home = () => {
     // estados 
     const [filmsrecovered, setfilmrecovered] = useState([]);
     const [filmsVistas, setFilmsVistas] = useState([]);
     const [filmsPorVer, setFilmsPorVer] = useState([]);
-    const [expandedCardId, setExpandedCardId] = useState(null); // Para controlar qué tarjeta está expandida
+    const [selectedFilm, setSelectedFilm] = useState(null); // Para el modal
+    const [showModal, setShowModal] = useState(false);
 
     // estados para filtros
     const [filtroTitulo, setFiltroTitulo] = useState("");
@@ -66,9 +67,16 @@ const Home = () => {
         });
     };
 
-    // Función para manejar la expansión de tarjetas
-    const handleToggleExpand = (filmId) => {
-        setExpandedCardId(expandedCardId === filmId ? null : filmId);
+    // Función para mostrar detalles de la película en un modal
+    const handleShowDetails = (film) => {
+        setSelectedFilm(film);
+        setShowModal(true);
+    };
+
+    // Función para cerrar el modal
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setSelectedFilm(null);
     };
 
     // Función para eliminar una película
@@ -77,9 +85,10 @@ const Home = () => {
         localStorage.setItem("films", JSON.stringify(updatedFilms));
         loadFilms(); // Recargar películas después de eliminar
 
-        // Cerrar tarjeta expandida si se eliminó
-        if (expandedCardId === filmId) {
-            setExpandedCardId(null);
+        // Cerrar modal si se eliminó la película que se está mostrando
+        if (selectedFilm && selectedFilm.id === filmId) {
+            setShowModal(false);
+            setSelectedFilm(null);
         }
     };
 
@@ -98,6 +107,12 @@ const Home = () => {
 
         localStorage.setItem("films", JSON.stringify(updatedFilms));
         loadFilms(); // Recargar películas después de actualizar
+        
+        // Actualizar la película seleccionada en el modal si es necesario
+        if (selectedFilm && selectedFilm.id === filmId) {
+            const updatedFilm = updatedFilms.find(film => film.id === filmId);
+            setSelectedFilm(updatedFilm);
+        }
     };
 
     // Aplicar filtros a las películas
@@ -109,113 +124,66 @@ const Home = () => {
     const countPorVer = porVerFiltradas.length;
 
     return (
-        <div className="">
-            <Title text={"Mi Colección de Películas"} />
-            <div className="boxFiltrar">
-                <p className="filtrar">Filtrar por : </p>
-
-                {/* Input para filtrar por título */}
-                <input
-                    className="select"
-                    type="text"
-                    placeholder="Buscar por título"
-                    value={filtroTitulo}
-                    onChange={handleTituloChange}
-                />
-
-                {/* Select para filtrar por género */}
-                <select
-                    className="select"
-                    name="genero"
-                    id="genero"
-                    value={filtroGenero}
-                    onChange={handleGeneroChange}
-                >
-                    <option value="genero">Genero</option>
-                    <option value="accion">Accion</option>
-                    <option value="comedia">Comedia</option>
-                    <option value="drama">Drama</option>
-                    <option value="terror">Terror</option>
-                    <option value="romance">Romance</option>
-                    <option value="fantasia">Fantasia</option>
-                </select>
-
-                {/* Select para filtrar por tipo */}
-                <select
-                    className="select"
-                    name="tipo"
-                    id="tipo"
-                    value={filtroTipo}
-                    onChange={handleTipoChange}
-                >
-                    <option value="genero">Tipo</option>
-                    <option value="pelicula">Pelicula</option>
-                    <option value="serie">Serie</option>
-                </select>
-            </div>
+        <div className="home-container">
             <div className="box">
                 {/* Películas Vistas  */}
-                <Title text={"Peliculas vistas"} />
-                <p>Cantidad: {countViews}</p>
-                <div className="Filmsbox">
-                    {vistasFiltradas.length > 0 ? (
-                        vistasFiltradas.map((film, index) => (
-                            <div key={`vista-${index}`} className="boxseen">
-                                <FilmCard
-                                    id={film.id || `vista-${index}`}
-                                    img={film.img}
-                                    titulo={film.title}
-                                    director={film.director}
-                                    año={film.year}
-                                    rating={film.rating}
-                                    genero={film.genero}
-                                    estado={film.estado}
-                                    tipo={film.typefilm}
-                                    accion="Volver a ver"
-                                    eliminar="Eliminar"
-                                    onDelete={handleDeleteFilm}
-                                    onAction={handleActionFilm}
-                                    isExpanded={expandedCardId === (film.id || `vista-${index}`)}
-                                    onToggleExpand={handleToggleExpand}
-                                />
-                            </div>
-                        ))
-                    ) : (
-                        <p className="pnotfound">No hay películas vistas que coincidan con los filtros</p>
-                    )}
+                <div className="section-header">
+                    <Title text={"Películas vistas"} />
+                    <p className="count-badge">Cantidad: {countViews}</p>
+                </div>
+                <div className="scrollable-container">
+                    <div className="Filmsbox">
+                        {vistasFiltradas.length > 0 ? (
+                            vistasFiltradas.map((film, index) => (
+                                <div key={`vista-${index}`} className="boxseen">
+                                    <FilmCard
+                                        id={film.id || `vista-${index}`}
+                                        img={film.img}
+                                        titulo={film.title}
+                                        onShowDetails={() => handleShowDetails(film)}
+                                    />
+                                </div>
+                            ))
+                        ) : (
+                            <p className="pnotfound">No hay películas vistas que coincidan con los filtros</p>
+                        )}
+                    </div>
                 </div>
 
                 {/* Películas Por Ver  */}
-                <Title text={"Peliculas por ver"} />
-                <p>Cantidad: {countPorVer}</p>
-                <div className="Filmsbox">
-                    {porVerFiltradas.length > 0 ? (
-                        porVerFiltradas.map((film, index) => (
-                            <div key={`porver-${index}`} className="boxseen">
-                                <FilmCard
-                                    id={film.id || `porver-${index}`}
-                                    img={film.img}
-                                    titulo={film.title}
-                                    director={film.director}
-                                    año={film.year}
-                                    rating={film.rating}
-                                    genero={film.genero}
-                                    estado={film.estado}
-                                    tipo={film.typefilm}
-                                    accion="Vista"
-                                    eliminar="Eliminar"
-                                    onDelete={handleDeleteFilm}
-                                    onAction={handleActionFilm}
-                                    isExpanded={expandedCardId === (film.id || `porver-${index}`)}
-                                    onToggleExpand={handleToggleExpand}
-                                />
-                            </div>
-                        ))
-                    ) : (
-                        <p className="pnotfound">No hay películas por ver que coincidan con los filtros</p>
-                    )}
+                <div className="section-header">
+                    <Title text={"Películas por ver"} />
+                    <p className="count-badge">Cantidad: {countPorVer}</p>
+                </div>
+                <div className="scrollable-container">
+                    <div className="Filmsbox">
+                        {porVerFiltradas.length > 0 ? (
+                            porVerFiltradas.map((film, index) => (
+                                <div key={`porver-${index}`} className="boxseen">
+                                    <FilmCard
+                                        id={film.id || `porver-${index}`}
+                                        img={film.img}
+                                        titulo={film.title}
+                                        onShowDetails={() => handleShowDetails(film)}
+                                    />
+                                </div>
+                            ))
+                        ) : (
+                            <p className="pnotfound">No hay películas por ver que coincidan con los filtros</p>
+                        )}
+                    </div>
                 </div>
             </div>
+
+            {/* Modal para los detalles de la película */}
+            {showModal && selectedFilm && (
+                <Modal 
+                    film={selectedFilm} 
+                    onClose={handleCloseModal}
+                    onDelete={handleDeleteFilm}
+                    onAction={handleActionFilm}
+                />
+            )}
         </div>
     );
 };
