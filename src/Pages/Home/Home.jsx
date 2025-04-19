@@ -24,14 +24,32 @@ const Home = () => {
     // Función para cargar películas
     const loadFilms = () => {
         const films = JSON.parse(localStorage.getItem("films")) || [];
-        setfilmrecovered(films);
+        
+        // Asegurar que todas las películas tengan un ID único
+        const filmsWithIds = films.map(film => {
+            if (!film.id) {
+                return { ...film, id: generateUniqueId() };
+            }
+            return film;
+        });
+        
+        if (filmsWithIds.length !== films.length) {
+            localStorage.setItem("films", JSON.stringify(filmsWithIds));
+        }
+        
+        setfilmrecovered(filmsWithIds);
 
         // filtre las peliculas vistas y por ver 
-        const vistas = films.filter(film => film.estado === "Vistas");
-        const porVer = films.filter(film => film.estado === "Por ver");
+        const vistas = filmsWithIds.filter(film => film.estado === "Vistas");
+        const porVer = filmsWithIds.filter(film => film.estado === "Por ver");
 
         setFilmsVistas(vistas);
         setFilmsPorVer(porVer);
+    };
+    
+    // Generar un ID único
+    const generateUniqueId = () => {
+        return 'film-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
     };
 
     // Funciones para manejar cambios en los filtros
@@ -83,13 +101,14 @@ const Home = () => {
     const handleDeleteFilm = (filmId) => {
         const updatedFilms = filmsrecovered.filter(film => film.id !== filmId);
         localStorage.setItem("films", JSON.stringify(updatedFilms));
-        loadFilms(); // Recargar películas después de eliminar
-
+        
         // Cerrar modal si se eliminó la película que se está mostrando
         if (selectedFilm && selectedFilm.id === filmId) {
             setShowModal(false);
             setSelectedFilm(null);
         }
+        
+        loadFilms(); // Recargar películas después de eliminar
     };
 
     // Función para cambiar el estado de una película
@@ -106,13 +125,14 @@ const Home = () => {
         });
 
         localStorage.setItem("films", JSON.stringify(updatedFilms));
-        loadFilms(); // Recargar películas después de actualizar
         
         // Actualizar la película seleccionada en el modal si es necesario
         if (selectedFilm && selectedFilm.id === filmId) {
             const updatedFilm = updatedFilms.find(film => film.id === filmId);
             setSelectedFilm(updatedFilm);
         }
+        
+        loadFilms(); // Recargar películas después de actualizar
     };
 
     // Aplicar filtros a las películas
@@ -126,6 +146,7 @@ const Home = () => {
     return (
         <div className="home-container">
             <div className="box">
+
                 {/* Películas Vistas  */}
                 <div className="section-header">
                     <Title text={"Películas vistas"} />
@@ -135,7 +156,7 @@ const Home = () => {
                     <div className="Filmsbox">
                         {vistasFiltradas.length > 0 ? (
                             vistasFiltradas.map((film, index) => (
-                                <div key={`vista-${index}`} className="boxseen">
+                                <div key={film.id || `vista-${index}`} className="boxseen">
                                     <FilmCard
                                         id={film.id || `vista-${index}`}
                                         img={film.img}
@@ -159,7 +180,7 @@ const Home = () => {
                     <div className="Filmsbox">
                         {porVerFiltradas.length > 0 ? (
                             porVerFiltradas.map((film, index) => (
-                                <div key={`porver-${index}`} className="boxseen">
+                                <div key={film.id || `porver-${index}`} className="boxseen">
                                     <FilmCard
                                         id={film.id || `porver-${index}`}
                                         img={film.img}
@@ -177,8 +198,8 @@ const Home = () => {
 
             {/* Modal para los detalles de la película */}
             {showModal && selectedFilm && (
-                <Modal 
-                    film={selectedFilm} 
+                <Modal
+                    film={selectedFilm}
                     onClose={handleCloseModal}
                     onDelete={handleDeleteFilm}
                     onAction={handleActionFilm}

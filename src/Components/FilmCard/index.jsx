@@ -2,6 +2,7 @@ import React from 'react';
 import './card.css';
 
 const FilmCard = ({
+    id,  // Añadido id como prop
     img,
     titulo,
     onShowDetails
@@ -15,9 +16,8 @@ const FilmCard = ({
         }
     };
 
-
     return (
-        <div className="netflix-card" onClick={handleShowModal}>
+        <div className="netflix-card" onClick={handleShowModal} data-id={id}>
             <div className="card-poster">
                 <img src={img} alt={`Imagen de ${titulo}`} className="poster-img" />
                 <div className="card-overlay"></div>
