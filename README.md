@@ -1,4 +1,4 @@
-# Proyecto React - Sistema de Gestión
+# Proyecto MyFlix React 
 
 ## Alumnas 
 - Contreras Gabriela (FAI-4480)
@@ -33,10 +33,10 @@ Contiene todos los componentes reutilizables de la aplicación. Estos componente
 ### `/Pages`
 Organiza las distintas secciones de la aplicación:
 
-- **Agregar**: Componentes y lógica para la creación de nuevos registros.
+- **Agregar**: Componentes y lógica para la creación de nuevas peliculas  .
 - **Home**: Página principal de la aplicación.
 - **Buscar**: Funcionalidad de búsqueda y filtrado de datos.
-- **Modal**: Componentes para ventanas modales utilizadas en diferentes partes de la aplicación.
+- **Modal**: Expansion de los datos de una pelicula .
 - **Navbar**: Barra de navegación principal.
 
 Cada carpeta contiene su archivo JSX con la lógica del componente y su correspondiente archivo CSS para los estilos específicos.
