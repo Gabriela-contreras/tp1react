@@ -2,7 +2,7 @@ import React from 'react';
 import './card.css';
 
 const FilmCard = ({
-    id,  // Añadido id como prop
+    id,  
     img,
     titulo,
     onShowDetails

@@ -24,7 +24,7 @@ const Home = () => {
     // Función para cargar películas
     const loadFilms = () => {
         const films = JSON.parse(localStorage.getItem("films")) || [];
-        
+
         // Asegurar que todas las películas tengan un ID único
         const filmsWithIds = films.map(film => {
             if (!film.id) {
@@ -32,11 +32,11 @@ const Home = () => {
             }
             return film;
         });
-        
+
         if (filmsWithIds.length !== films.length) {
             localStorage.setItem("films", JSON.stringify(filmsWithIds));
         }
-        
+
         setfilmrecovered(filmsWithIds);
 
         // filtre las peliculas vistas y por ver 
@@ -46,7 +46,7 @@ const Home = () => {
         setFilmsVistas(vistas);
         setFilmsPorVer(porVer);
     };
-    
+
     // Generar un ID único
     const generateUniqueId = () => {
         return 'film-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
@@ -101,13 +101,13 @@ const Home = () => {
     const handleDeleteFilm = (filmId) => {
         const updatedFilms = filmsrecovered.filter(film => film.id !== filmId);
         localStorage.setItem("films", JSON.stringify(updatedFilms));
-        
+
         // Cerrar modal si se eliminó la película que se está mostrando
         if (selectedFilm && selectedFilm.id === filmId) {
             setShowModal(false);
             setSelectedFilm(null);
         }
-        
+
         loadFilms(); // Recargar películas después de eliminar
     };
 
@@ -125,13 +125,13 @@ const Home = () => {
         });
 
         localStorage.setItem("films", JSON.stringify(updatedFilms));
-        
+
         // Actualizar la película seleccionada en el modal si es necesario
         if (selectedFilm && selectedFilm.id === filmId) {
             const updatedFilm = updatedFilms.find(film => film.id === filmId);
             setSelectedFilm(updatedFilm);
         }
-        
+
         loadFilms(); // Recargar películas después de actualizar
     };
 
@@ -166,7 +166,7 @@ const Home = () => {
                                 </div>
                             ))
                         ) : (
-                            <p className="pnotfound">No hay películas vistas que coincidan con los filtros</p>
+                            <p className="pnotfound">No hay películas vistas </p>
                         )}
                     </div>
                 </div>
@@ -190,7 +190,7 @@ const Home = () => {
                                 </div>
                             ))
                         ) : (
-                            <p className="pnotfound">No hay películas por ver que coincidan con los filtros</p>
+                            <p className="pnotfound">No hay películas por ver </p>
                         )}
                     </div>
                 </div>
