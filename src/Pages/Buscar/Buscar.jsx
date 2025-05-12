@@ -32,6 +32,7 @@ import React, { useState, useEffect } from 'react';
      aplicarFiltros();
    }, [busqueda, filtroGenero, filtroTipo, filtroEstado, allFilms]);
  
+   //Todos estos fitros podrian ser una funcion que reciba por parametro sobre que campo  quiere filtrar
    // Función para aplicar todos los filtros
    const aplicarFiltros = () => {
      let resultado = allFilms;
@@ -172,7 +173,9 @@ import React, { useState, useEffect } from 'react';
              <option value="fantasia">Fantasía</option>
            </select>
          </div>
-         
+
+
+         {/* Esto podria ser un componente (tienen un select tal vez podrian unificarlo con este) */}
          <div className="sidebar-section">
            <label htmlFor="tipo">Tipo</label>
            <select
@@ -186,7 +189,8 @@ import React, { useState, useEffect } from 'react';
              <option value="serie">Serie</option>
            </select>
          </div>
-         
+             {/* Esto podria ser un componente (mismo que el de arriba) */}
+
          <div className="sidebar-section">
            <label htmlFor="estado">Estado</label>
            <select
