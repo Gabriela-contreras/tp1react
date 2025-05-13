@@ -1,3 +1,4 @@
+// Borren este archivo si no lo usan
 // import React, { useState, useEffect } from 'react';
 // import './filtrar.css';
 // import FilmCard from "../FilmCard";

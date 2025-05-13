@@ -1,3 +1,21 @@
+Correcciones
+
+- Linda UI, buenas animaciones.
+- Buen readme. Completo y prolijo.
+- Codigo bien estilado, de gran calidad.
+- Buen uso de local storage.
+- Buen uso de useState y useEffect.
+- Buen componente modal.
+
+Observaciones:
+- Tienen dos carpetas de /pages y /Pages. La que tiene miniscula tiene solo el navbar dentro. Este navbar
+podria estar dentro components.
+- Dentro de pages deberian ir unicamente componentes que renderizar una pagina. Modal no entra en esa definicion
+- Borren codigo y archivos comentados o que no usan.
+- Button card y Button sumbit son muy parecidos uno del otro. Lo mejor hubiera sido tener un unico componente y manejar los dos estados por medio de una prop. (tipo fullWidht)
+
+Nota: 10
+
 # Proyecto MyFlix React 
 
 ## Alumnas 

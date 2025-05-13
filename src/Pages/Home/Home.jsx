@@ -52,6 +52,7 @@ const Home = () => {
         return 'film-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
     };
 
+    //Estas funciones no se estan usando. Si no se usan entonces no deberian estasr en el codigo. 
     // Funciones para manejar cambios en los filtros
     const handleTituloChange = (e) => {
         setFiltroTitulo(e.target.value.toLowerCase());
